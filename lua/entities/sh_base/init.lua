@@ -92,6 +92,8 @@ function ENT:FireOutput( key, activator, value )
     return true
 end
 
+ENT.GetValue = ENTITY.GetInternalVariable
+ENT.SetValue = ENTITY.SetKeyValue
 ENT.FireInput = ENTITY_Fire
 
 local metatable = {
