@@ -3,19 +3,34 @@ local ENT = ENT
 
 ENT.Base = "sh_base"
 
----@param key string
----@return string
-local function formatter( key )
-    return CompileString( "return " .. key, "sh_chat", true )()
-end
+do
 
----@param activator Entity
----@param value string
-function ENT:InSendMessage( activator, _, value )
-    if activator:IsPlayer() then
-        ---@cast activator Player
-        activator:Say( string.gsub( tostring( value ), "#{(.-)}", formatter ), false )
+    local env = {}
+
+    setmetatable( env, {
+        __index = _G,
+        __newindex = _G
+    } )
+
+    ---@param key string
+    ---@return string
+    local function formatter( key )
+        local fn = CompileString( "return " .. key, "sh_chat", true )
+        setfenv( fn, env )
+        return tostring( fn() )
     end
+
+    ---@param activator Entity
+    ---@param value string
+    function ENT:InSendMessage( activator, _, value )
+        if activator:IsPlayer() then
+            ---@cast activator Player
+            rawset( env, "C", self )
+            rawset( env, "A", activator )
+            activator:Say( string.gsub( tostring( value ), "#{(.-)}", formatter ), false )
+        end
+    end
+
 end
 
 do
