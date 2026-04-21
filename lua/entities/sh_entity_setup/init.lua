@@ -101,7 +101,8 @@ function ENT:InApply( activator )
     if angles_str ~= nil and isstring( angles_str ) then
         local angles = self.toAngle( angles_str )
         if angles ~= nil then
-            local fn = activator.SetAngles
+            ---@cast activator Player
+            local fn = activator:IsPlayer() and activator.SetEyeAngles or activator.SetAngles
             if isfunction( fn ) then
                 fn( activator, angles )
             end
