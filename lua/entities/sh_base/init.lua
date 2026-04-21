@@ -305,7 +305,7 @@ do
     end
 
     function ENT.toColor( str )
-        local r, g, b, a = string_match( str, "^(%-?%d*%.?%d*)%s*(%-?%d*%.?%d*)%s*(%-?%d*%.?%d*)%s*(%-?%d*%.?%d*)$" )
+        local r, g, b, a = string_match( str, "^(%d*)%s*(%d*)%s*(%d*)%s*(%d*)$" )
         return Color( ( tonumber( r or 0, 10 ) or 0 ) % 255, ( tonumber( g or 0, 10 ) or 0 ) % 255, ( tonumber( b or 0, 10 ) or 0 ) % 255, ( tonumber( a or 0, 10 ) or 255 ) % 255 )
     end
 
