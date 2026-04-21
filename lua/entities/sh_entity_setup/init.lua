@@ -67,7 +67,7 @@ end
 
 ---@param activator Entity
 function ENT:InApply( activator )
-    apply_string( activator, "SetName", self:GetValue( "target_name" ) )
+    apply_string( activator, "SetName", self:GetValue( "entity_name" ) )
 
     apply_string( activator, "SetModel", self:GetValue( "model_path" ), is_valid_model )
     apply_string( activator, "SetMaterial", self:GetValue( "model_material" ) )
