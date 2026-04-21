@@ -73,6 +73,7 @@ function ENT:InApply( activator )
     apply_string( activator, "SetMaterial", self:GetValue( "model_material" ) )
     apply_double( activator, "SetModelScale", self:GetValue( "model_scale" ) )
     apply_integer( activator, "SetSkin", self:GetValue( "model_skin" ) )
+    apply_string( activator, "SetBodyGroups", self:GetValue( "model_bodygroups" ) )
 
     local color_str = self:GetValue( "model_color" )
     if color_str ~= nil and isstring( color_str ) then
@@ -119,8 +120,6 @@ function ENT:InApply( activator )
             end
         end
     end
-
-    apply_string( activator, "SetBodyGroups", self:GetValue( "bodygroup" ) )
 
     apply_integer( activator, "SetCollisionGroup", self:GetValue( "collision_group" ) )
     apply_integer( activator, "SetMoveType", self:GetValue( "move_type" ) )
