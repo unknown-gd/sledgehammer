@@ -4,5 +4,6 @@ local ENT = ENT
 ENT.Base = "sh_base"
 
 function ENT:InExecute( activator, _, value )
-    RunConsoleCommand( tostring( value ) )
+    local cmd_str = tostring( value )
+    RunConsoleCommand( string.match( cmd_str, "^%s*([^%s]*)(.*)$" ) or cmd_str )
 end
