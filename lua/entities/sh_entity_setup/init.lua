@@ -66,11 +66,12 @@ local function apply_double( entity, fn_name, str, is_valid )
 end
 
 ---@param activator Entity
-function ENT:InApply( activator )
+function ENT:InSetup( activator )
     apply_string( activator, "SetName", self:GetValue( "entity_name" ) )
 
     apply_string( activator, "SetModel", self:GetValue( "model_path" ), is_valid_model )
     apply_string( activator, "SetMaterial", self:GetValue( "model_material" ) )
+    --- TODO: add web materials support
     apply_double( activator, "SetModelScale", self:GetValue( "model_scale" ) )
     apply_integer( activator, "SetSkin", self:GetValue( "model_skin" ) )
     apply_string( activator, "SetBodyGroups", self:GetValue( "model_bodygroups" ) )

@@ -21,11 +21,16 @@ function ENT:InDirection( activator, _, value )
     self:Apply()
 end
 
+function ENT:InForce( activator, _, value )
+    self.m_vForce = tonumber( value, 10 ) or nil
+    self:ConsoleMessage( "debug", "Gravity force set to %s", self.m_vForce )
+    self:Apply()
+end
+
 function ENT:KeyValue_direction( value )
     self:InDirection( nil, nil, value )
 end
 
 function ENT:KeyValue_force( value )
-    self.m_vForce = tonumber( value, 10 ) or nil
-    self:Apply()
+    self:InForce( nil, nil, value )
 end
